@@ -37,8 +37,8 @@ def extract_movies_to_df():
       .format("jdbc") \
       .option("url", "jdbc:postgresql://localhost:5432/etl_pipeline") \
       .option("dbtable", "etl_pipeline.movies") \
-      .option("user", "postgres") \
-      .option("password", "2Brothers1Sister#") \
+      .option("user", "<username>") \
+      .option("password", "<password>") \
       .option("driver", "org.postgresql.Driver") \
       .load()
     return movies_df
@@ -59,8 +59,8 @@ def extract_user_to_df():
       .format("jdbc") \
       .option("url", "jdbc:postgresql://localhost:5432/etl_pipeline") \
       .option("dbtable", "etl_pipeline.user") \
-      .option("user", "postgres") \
-      .option("password", "2Brothers1Sister#") \
+      .option("user", "<username>") \
+      .option("password", "<password>") \
       .option("driver", "org.postgresql.Driver") \
       .load()
     return user_df
@@ -105,8 +105,8 @@ print(transform_avg_ratings(extract_movies_to_df(),extract_user_to_df() ).show()
 def load_df_to_db(df):
     mode = "overwrite"
     url = "jdbc:postgresql://localhost:5432/etl_pipeline"
-    properties = {"user": "postgres",
-                  "password": "2Brothers1Sister#",
+    properties = {"user": "<username>",
+                  "password": "<password>",
                   "driver": "org.postgresql.Driver"
                   }
     df.write.jdbc(url=url,
